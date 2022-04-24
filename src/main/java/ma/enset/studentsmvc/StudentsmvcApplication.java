@@ -22,7 +22,7 @@ public class StudentsmvcApplication {
 	}
 
 //	@Bean
-	CommandLineRunner commandLineRunner(StudentRepository patientRepository){
+	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
 
 		return  args ->{
 
@@ -30,7 +30,7 @@ public class StudentsmvcApplication {
 			Random rd = new Random();
 			for (int i = 0; i < 100; i++) {
 
-				patientRepository.save(new Student(null,faker.name().name(),faker.name().firstName(),faker.internet().emailAddress(),faker.date().birthday(),rd.nextBoolean()? Genre.FEMININ :Genre.MASCULIN ,rd.nextBoolean()));
+				studentRepository.save(new Student(null,faker.name().name(),faker.name().firstName(),faker.internet().emailAddress(),faker.date().birthday(),rd.nextBoolean()? Genre.FEMININ :Genre.MASCULIN ,rd.nextBoolean()));
 			}
 		};
 

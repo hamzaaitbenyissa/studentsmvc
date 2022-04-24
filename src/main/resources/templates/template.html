@@ -11,6 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.js"></script>
+<style>
+    body{
+        background-color: #2980b9;
+    }
+</style>
 
 </head>
 <body>
@@ -26,7 +31,8 @@
                 <a class="nav-link dropdown-toggle" th:href="@{index}" role="button"
                    data-bs-toggle="dropdown">students</a>
                 <ul class="dropdown-menu">
-                    <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item" th:href="@{formStudents}">Nouveau</a>
+                    <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item"
+                                                                 th:href="@{formStudents}">Nouveau</a>
                     </li>
                     <li><a class="dropdown-item" th:href="@{index}">Chercher</a></li>
                 </ul>
@@ -54,6 +60,7 @@
 
     </div>
 </nav>
+
 
 <section layout:fragment="content"></section>
 </body>

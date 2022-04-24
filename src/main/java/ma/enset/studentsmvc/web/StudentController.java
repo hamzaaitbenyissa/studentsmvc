@@ -35,6 +35,20 @@ public class StudentController {
         return "students";
     }
 
+    @GetMapping(path = "/students2")
+    public String Student2(Model model,
+                          @RequestParam(name = "page", defaultValue = "0") int page,
+                          @RequestParam(name = "size", defaultValue = "5") int size,
+                          @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+        Page<Student> studentsPages = studentRepository.findStudentByNomContains(keyword, PageRequest.of(page, size));
+        model.addAttribute("students", studentsPages.getContent());
+        model.addAttribute("pages", new int[studentsPages.getTotalPages()]);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
+        return "students2";
+    }
+
+
     @GetMapping(path = "/delete")
     public String delete(Long id, String keyword, int page) {
         studentRepository.deleteById(id);
