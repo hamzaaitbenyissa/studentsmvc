@@ -25,20 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-/*
-
-        auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder.encode("1234")).roles("USER");
-        auth.inMemoryAuthentication().withUser("user2").password(passwordEncoder.encode("abcd")).roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder.encode("admin")).roles("USER","ADMIN");
-*/
-/*
-        //JDBC authentication
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username as principal, password as credentials, active from users where username =?")
-                .authoritiesByUsernameQuery("select username as principal, role as role from users_roles where username=?")
-                .rolePrefix("ROLE_")
-                .passwordEncoder(passwordEncoder);*/
 
         auth.userDetailsService(userDetailsService);
 
@@ -48,9 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.formLogin();
+        // a customized login page
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll();
+
+        http.csrf().disable(); // disable CSRF prevention to use a logout link (via HTTP GET method)
+
         http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/webjars/**").permitAll();
+        http.authorizeRequests().antMatchers("/webjars/**", "/js/**", "/styles/**", "/img/**").permitAll(); // permit static resources
+
 
         http.authorizeRequests().antMatchers("/delete/**", "/save/**", "/edit/**", "/formStudents/**", "/editStudents/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/index/**").hasAuthority("USER");
