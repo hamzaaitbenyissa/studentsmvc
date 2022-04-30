@@ -7,11 +7,18 @@ Students management
 - [Database](#database)
 - [Admin Interface](#admin-interface)
 - [User Interface](#user-interface)
-- [Error Handling](#user-interface)
+- [Error Handling](#Error-Handling)
 
 ## Project Structure
 <!-- Project Structure -->
+That's the global structure of our project <br/>
 ![image](https://user-images.githubusercontent.com/85696348/166109155-8087135c-29f7-4c86-980b-306fd8579a79.png)
+
+entities, repositories and web packages<br/> <br/>
+![image](https://user-images.githubusercontent.com/85696348/166111015-fd702f8a-e096-4d2f-a991-277e6d6da536.png)
+
+Security package : <br/> <br/>
+![image](https://user-images.githubusercontent.com/85696348/166111761-cab9677b-8cbf-41e6-81e0-f60033b9e5af.png)
 
 ## Database
 Our database looks like that :
